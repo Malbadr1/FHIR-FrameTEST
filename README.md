@@ -72,22 +72,6 @@ mvn allure:serve
 
 ---
 
-## 📊 Icons Used in Logs
-
-| Emoji | Meaning             |
-|-------|----------------------|
-| ✅     | Test Step / Success |
-| 📥     | GET Request         |
-| ➕     | POST Request        |
-| 🔁     | PUT Request         |
-| 🩹     | PATCH Request       |
-| 🧪     | Validate Resource   |
-| 🔍     | Search              |
-| 📂     | File Input          |
-| ❌     | Delete Resource     |
-
----
-
 
 ## 📌 Tips
 
