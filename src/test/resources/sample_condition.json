@@ -1,0 +1,47 @@
+{
+  "resourceType": "Condition",
+  "id": "sample-condition",
+  "clinicalStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+        "code": "active"
+      }
+    ]
+  },
+  "verificationStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+        "code": "confirmed"
+      }
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code": "encounter-diagnosis",
+          "display": "Encounter Diagnosis"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "44054006",
+        "display": "Diabetes mellitus type 2"
+      }
+    ],
+    "text": "Type 2 Diabetes Mellitus"
+  },
+  "subject": {
+    "reference": "Patient/mohanad-albadri",
+    "display": "Mohanad Al Badri"
+  },
+  "onsetDateTime": "2021-01-01",
+  "recordedDate": "2024-05-16"
+}

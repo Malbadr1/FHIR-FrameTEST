@@ -1,0 +1,151 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Basic project metadata -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.restassured</groupId>
+    <artifactId>api-testing-framework</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- Set Java version and JUnit version -->
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <junit.jupiter.version>5.10.0</junit.jupiter.version>
+    </properties>
+
+    <dependencies>
+        <!-- ✅ REST Assured: Main library for API testing -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.4.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 🧩 JSONPath: Used for parsing JSON responses -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>5.4.0</version>
+        </dependency>
+
+        <!-- 🔁 Jackson: JSON serialization and deserialization -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.0</version>
+        </dependency>
+
+        <!-- 🧪 JUnit 5 (Jupiter): Testing framework -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 📦 JSON Schema Validator: Validates JSON structure -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.4.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 📊 Allure REST Assured adapter -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>2.25.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 📊 Allure JUnit5 integration -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>2.25.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ☑️ JUnit Platform Console: Allows launching test classes programmatically -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-console-standalone</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+
+        <!-- ☑️ JUnit Launcher: Needed for custom test runners -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.10.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 🔊 SLF4J Logger: Simple logger backend for SLF4J -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 🧪 JUnit Jupiter API (for IDEs and code hints) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- ✅ Ensure all test resources are copied (not just JSON) -->
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <!-- ▶️ Exec Plugin: Used to run MenuLauncher CLI -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>run.MenuLauncher</mainClass>
+                    <classpathScope>test</classpathScope>
+                </configuration>
+            </plugin>
+
+            <!-- 🧪 Surefire Plugin: Runs tests with JUnit 5 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <!-- Important: Ensures Allure writes test results to target/allure-results -->
+                    <systemPropertyVariables>
+                        <allure.results.directory>target/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+            <!-- 📈 Allure Maven Plugin: Used to serve and generate Allure reports -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
